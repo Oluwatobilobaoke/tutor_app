@@ -4,8 +4,7 @@
     "description": "Nodejs, mongodb",
     "license": "MIT",
     "repository": {
-        "type": "git",
-        "url": "https://github.com/Oluwatobilobaoke/tutoring_app"
+        "type": "git"
     },
     "scripts": {
         "start": "node ./server.js",
