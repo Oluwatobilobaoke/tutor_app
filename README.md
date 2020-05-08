@@ -1,5 +1,7 @@
 # Tutor APP
 
+NOTE: App development hasnt been completed, here is where i stopped for submission would continue working on a new branch to complete the whole excercise and learning
+
 * git clone 
 
 * cd tutor_app
@@ -9,7 +11,6 @@
 * create your .env file and update variables but i left mine there for now
 
 # Heroku API link
-STll having issues with my db syncing with the app
 
 https://onlinetutorapp.herokuapp.com/
 
