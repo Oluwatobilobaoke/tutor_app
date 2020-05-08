@@ -1,26 +1,67 @@
-﻿require('rootpath')();
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const jwt = require('_helpers/jwt');
-const errorHandler = require('_helpers/error-handler');
+const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
+const morgan = require('morgan');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+require('dotenv').config()
+// dotenv.config({
+//     path: "./config.env",
+// });
+
+// routes
+const index = require('./routes/home.route');
+const auth = require('./routes/auth.routes');
+const category = require('./routes/category.routes');
+const subject = require('./routes/subject.routes');
+const users = require('./routes/user.routes');
+
+const connectDatabase = require('./config/db.config');
+const errorHandler = require('./middlewares/error');
+
+// Connect to database
+connectDatabase();
+
+const app = express();
+
+// Body parser
+app.use(express.json());
+
+// Cookie parser
+app.use(cookieParser());
+
+// logging middleware
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+// Sanitize data
+app.use(mongoSanitize());
+
+// Enable CORS
 app.use(cors());
 
-// use JWT auth to secure the api
-app.use(jwt());
+// mount routers
+app.use('/', index);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/category', category);
+app.use('/api/v1/subject', subject);
+app.use('/api/v1/users', users);
 
-// api routes
-app.use('/api/v1/users', require('./users/users.controller'));
-
-// global error handler
+// handle error
 app.use(errorHandler);
 
-// start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 5000;
-const server = app.listen(port, function () {
-    console.log('Server listening on port ' + port);
+const PORT = process.env.PORT || 5000;
+
+const server = app.listen(
+    PORT,
+    console.log(
+        `Server running on ${process.env.NODE_ENV} mode on port ${PORT}`
+    )
+);
+
+// Handle unhandle promise rejections
+process.on('unhandledRejection', (err) => {
+    console.log(`Error: ${err.message}`.red);
+    server.close(() => process.exit(1));
 });
