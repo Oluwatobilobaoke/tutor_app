@@ -8,8 +8,10 @@
 
 * create your .env file and update variables but i left mine there for now
 
-# heroku api link
+# Heroku API link
 STll having issues with my db syncing with the app
+
+https://onlinetutorapp.herokuapp.com/
 
 * Test API LINKS
 
