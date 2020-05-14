@@ -8,9 +8,11 @@ NOTE: App development hasnt been completed, here is where i stopped for submissi
 
 * npm install
 
-* create your .env file and update variables but i left mine there for now
+* create your .env file and update variables
 
 # Heroku API link
+
+NOTE: The first request to the api link takes  8 - 16s
 
 https://onlinetutorapp.herokuapp.com/
 
