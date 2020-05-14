@@ -14,6 +14,6 @@ router.post('/signup', signUp);
 router.post('/login', logIn);
 router.post('/logout', logOut);
 router.get('/profile', protect, profile);
-router.put('/updateprofie', protect, updateProfile);
+router.put('/profile-update', protect, updateProfile);
 
 module.exports = router;
