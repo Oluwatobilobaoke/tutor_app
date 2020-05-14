@@ -17,7 +17,7 @@ exports.addSubject = asyncHandler(async (req, res, next) => {
         category: req.params.categoryId,
     });
 
-    res.status(201).json({ success: true, data: subject });
+    res.status(201).json({ success: true, payload: subject });
 });
 
 // Get all subjects in a category by id
@@ -27,7 +27,7 @@ exports.getSubjects = asyncHandler(async (req, res, next) => {
         '-_id -description -__v -createdAt'
     );
 
-    res.status(200).json({ success: true, data: subjects });
+    res.status(200).json({ success: true, payload: subjects });
 });
 
 // Get Subject in a Category by id
@@ -37,7 +37,7 @@ exports.getSubject = asyncHandler(async (req, res, next) => {
         category: req.params.categoryId,
     }).populate('category', '-_id -description -__v -createdAt');
 
-    res.status(200).json({ succes: true, data: subject });
+    res.status(200).json({ succes: true, payload: subject });
 });
 
 // @desc      Update Subject in a Category by Id
@@ -60,7 +60,7 @@ exports.updateSubject = asyncHandler(async (req, res, next) => {
         }
     );
 
-    res.status(201).json({ success: true, data: subject });
+    res.status(201).json({ success: true, payload: subject });
 });
 
 //Delete Subject in a Category by id
@@ -68,9 +68,9 @@ exports.deleteSubject = asyncHandler(async (req, res, next) => {
     const cat = await Category.findById(req.params.categoryId);
     if (!cat) return next(new ErrorResponse('Invalid category provided', 404));
 
-    await Subject.findByIdAndDelete(req.params.subId);
+    await Subject.findByIdAndDelete(req.params.subjectId);
 
-    res.status(200).json({ success: true, data: {} });
+    res.status(200).json({ success: true, payload: {} });
 });
 
 //Search subject in a Category by name
@@ -80,5 +80,5 @@ exports.getSubjectsByName = asyncHandler(async (req, res, next) => {
         name: 1,
     });
 
-    res.status(200).json({ success: true, data: subjects });
+    res.status(200).json({ success: true, payload: subjects });
 });

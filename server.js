@@ -1,10 +1,10 @@
-const express = require('express');
+﻿const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
 const morgan = require('morgan');
 
-require('dotenv').config()
+require('dotenv').config();
 // dotenv.config({
 //     path: "./config.env",
 // });
@@ -15,6 +15,7 @@ const auth = require('./routes/auth.routes');
 const category = require('./routes/category.routes');
 const subject = require('./routes/subject.routes');
 const users = require('./routes/user.routes');
+const lesson = require('./routes/lesson.routes');
 
 const connectDatabase = require('./config/db.config');
 const errorHandler = require('./middlewares/error');
@@ -47,6 +48,8 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/category', category);
 app.use('/api/v1/subject', subject);
 app.use('/api/v1/users', users);
+app.use('/api/v1/lesson', lesson);
+
 
 // handle error
 app.use(errorHandler);
@@ -62,6 +65,6 @@ const server = app.listen(
 
 // Handle unhandle promise rejections
 process.on('unhandledRejection', (err) => {
-    console.log(`Error: ${err.message}`.red);
+    console.log(`Error: ${err.message}`);
     server.close(() => process.exit(1));
 });

@@ -6,7 +6,7 @@ const ErrorResponse = require('../_helpers/error-handler');
 exports.getCategories = asyncHandler(async (req, res, next) => {
     const categories = await Category.find({});
 
-    res.status(200).json({ success: true, data: categories });
+    res.status(200).json({ success: true, payload: categories });
 });
 
 // Create A category
@@ -16,7 +16,7 @@ exports.addCategory = asyncHandler(async (req, res, next) => {
     // Create category
     const category = await Category.create({ name, description });
 
-    res.status(201).json({ success: true, data: category });
+    res.status(201).json({ success: true, payload: category });
 });
 
 //Update cCategory details
@@ -36,7 +36,7 @@ exports.updateCategory = asyncHandler(async (req, res, next) => {
         }
     );
 
-    res.status(200).json({ success: true, data: category });
+    res.status(200).json({ success: true, payload: category });
 });
 
 // Delete Category
@@ -50,5 +50,5 @@ exports.deleteCategory = asyncHandler(async (req, res, next) => {
 
     await category.remove();
 
-    res.status(200).json({ success: true, data: {} });
+    res.status(200).json({ success: true, payload: {} });
 });

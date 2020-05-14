@@ -21,6 +21,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     res.status(statusCode).cookie('token', token, options).json({
         success: true,
         token,
+        payload: user,
     });
 };
 
@@ -81,7 +82,7 @@ exports.logOut = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: {},
+        payload: {},
     });
 });
 
@@ -91,7 +92,7 @@ exports.profile = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: user,
+        payload: user,
     });
 });
 
@@ -110,6 +111,6 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        data: user,
+        payload: user,
     });
 });
