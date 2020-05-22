@@ -16,7 +16,6 @@ const category = require('./routes/category.routes');
 const subject = require('./routes/subject.routes');
 const users = require('./routes/user.routes');
 const lesson = require('./routes/lesson.routes');
-
 const connectDatabase = require('./config/db.config');
 const errorHandler = require('./middlewares/error');
 
