@@ -1,7 +1,5 @@
 # Tutor APP
 
-NOTE: App development hasnt been completed, here is where i stopped for submission would continue working on a new branch to complete the whole excercise and learning
-
 * git clone 
 
 * cd tutor_app
